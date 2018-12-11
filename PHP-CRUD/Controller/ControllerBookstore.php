@@ -1,20 +1,22 @@
 <?php
 
-require_once 'ControllerBookstore.php';
-require_once 'Book.php';
+require_once '../Model/ModelBookstore.php';
+require_once '../Model/Book.php';
 
 
-class ViewBookstore extends ControllerBookstore
+class ControllerBookstore
 {
 
     public function saveBook()
     {
+            $model = new ModelBookstore;
+
             $author = $_POST['author'];
             $title = $_POST['title'];
             $isbn = $_POST['isbn'];
 
             $book = new Book($author, $title, $isbn, 0);
-            $id=$this->insertIntoBookstore($book);
+            $id=$model->insertIntoBookstore($book);
             $book->id=$id;
 
             if($id != 0){
@@ -25,8 +27,9 @@ class ViewBookstore extends ControllerBookstore
 
     public function deleteBook()
     {
+            $model = new ModelBookstore;
             $id = $_POST['id'];
-            $this->deleteFromBookstore($id);
+            $model->deleteFromBookstore($id);
 
     }
 
@@ -39,32 +42,34 @@ class ViewBookstore extends ControllerBookstore
             $id = $_POST['id'];
 
             $book = new Book($author, $title, $isbn, $id);
-            $this->updateBookstore($book);
+            $model = new ModelBookstore;
+            $model->updateBookstore($book);
     }
 
     public function showAllBooks(){
-        echo json_encode($this->getAllBooks());
+        $model = new ModelBookstore;
+        echo json_encode($model->getAllBooks());
     }
 }
 
-$view = new ViewBookstore();
+$controller = new ControllerBookstore;
 
 if(isset($_GET['show_books'])) {
-    $view->showAllBooks();
+    $controller->showAllBooks();
 }
 
 else if (isset($_POST['operation'])){
         switch($_POST['operation']) {
             case "delete": {
-                $view->deleteBook();
+                $controller->deleteBook();
                 break;
             }
             case "save":{
-                $view->saveBook();
+                $controller->saveBook();
                 break;
             }
             case "update":{
-                $view->updateBook();
+                $controller->updateBook();
                 break;
             }
             default:{
