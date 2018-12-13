@@ -23,24 +23,29 @@ require_once '../Model/ModelBookstore.php';
             <a id="alert-close" class="close" href="#" aria-label="Close">&times;</a>
         </div>
 
-        <div class="row">
+        <div class="row" id="header">
             <div class="col"><h5>ID</h5></div>
             <div class="col"><h5>Author</h5></div>
             <div class="col"><h5>Title</h5></div>
             <div class="col"><h5>ISBN</h5></div>
             <div class="col"><h5>Action</h5></div>
         </div>
-        <div class="row">
-            <div class="col id"></div>
-            <div class="col author"></div>
-            <div class="col title"></div>
-            <div class="col isbn"></div>
-            <div class="col buttons">
+
+        <div id="body"></div>
+
+        <template id="template">
+            <div class="row">
+                <div class="col id"></div>
+                <div class="col author"></div>
+                <div class="col title"></div>
+                <div class="col isbn"></div>
+                <div class="col buttons">
                     <button class='btn btn-info edit'>Edit</button>
                     <button class='btn btn-danger delete'>Delete</button>
+                </div>
             </div>
-        </div>
-        <div class="row">
+        </template>
+        <!--<div class="row">
             <div class="col id"></div>
             <div class="col author"></div>
             <div class="col title"></div>
@@ -130,7 +135,7 @@ require_once '../Model/ModelBookstore.php';
                 <button class='btn btn-danger delete'>Delete</button>
             </div>
         </div>
-
+-->
 
 
         <div class="row justify-content-center" >
