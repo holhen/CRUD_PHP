@@ -1,8 +1,0 @@
-.btn:active, .btn:focus{
-    border: none;
-    box-shadow: none;
-}
-.col{
-    border: solid 1px;
-    text-align:center;
-}
